@@ -25,8 +25,8 @@
 		"install-client": "cd client && npm install",
 		"heroku-postbuild": "npm run install-client && npm run build",
 		"client": "cd client && npm start",
-		"startback": "nodemon index.js",
-		"start": "concurrently \"npm run start\" \"npm run client\""
+		"server": "nodemon index.js",
+		"start": "concurrently \"npm run server\" \"npm run client\""
 	},
 	"keywords": [],
 	"author": "",

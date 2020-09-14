@@ -57,12 +57,12 @@ app.post('/api/postMessages', (req, res) => {
 	});
 });
 
-const port = process.env.SERVER_PORT || 8080;
+const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('../client/build'));
 }
 
 app.listen(port, () => {
-	console.log(`${process.env.SERVER_PORT || 'http://localhost:3000'} `);
+	console.log(`${process.env.PORT || 'http://localhost:3000'} `);
 });

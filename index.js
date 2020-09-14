@@ -5,7 +5,6 @@ const helmet = require('helmet');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const cors = require('cors');
-console.log(process.env.SERVER_PORT);
 const DB_URL = process.env.MONGODB_URL;
 const dbName = 'doggies';
 const dbCollection = 'messages';
@@ -17,7 +16,7 @@ app.use(helmet());
 app.options('*', cors());
 app.use(
 	cors({
-		origin: `${process.env.CLIENT_PORT || 'http://localhost:3000'} `,
+		origin: `${process.env.PORT || 'http://localhost:3000'} `,
 	})
 );
 
@@ -32,7 +31,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/postMessages', (req, res) => {
-	console.log(process.env.CLIENT_PORT);
 	client.connect((error) => {
 		if (error) throw error;
 		const db = client.db(dbName);

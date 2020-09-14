@@ -1,0 +1,227 @@
+.FavSVG svg path {
+  fill: #b4d3d9;
+}
+
+@media screen and (max-width: 1000px) {
+  .favoriteList {
+    padding: 4vw 2vw;
+  }
+  .favoriteList .fav {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    margin: 0 auto 2vw auto;
+    width: 90%;
+  }
+  .favoriteList .fav .leftGroup {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .favoriteList .fav .leftGroup h1 {
+    margin: 2vw auto 1vw 0;
+  }
+  .favoriteList .fav .leftGroup p {
+    margin: 2vw auto 1vw 0;
+    font-size: 2em;
+  }
+  .favoriteList .fav .leftGroup img {
+    width: 6rem;
+    height: 6rem;
+    margin-top: 5vw;
+  }
+  .favoriteList .fav .rightGroup {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .favoriteList .fav .rightGroup i {
+    font-size: 2em;
+  }
+  .favoriteList .fav .rightGroup button {
+    padding: 0.5vw 4vw;
+  }
+}
+
+@media screen and (max-width: 1440px) and (min-width: 1000px) {
+  .favoriteList {
+    padding: 5rem 0;
+  }
+  .favoriteList .fav {
+    margin: 0 8rem;
+    margin-bottom: 1rem;
+  }
+  .favoriteList .fav .leftGroup h1 {
+    margin: auto 0;
+    margin-right: 1rem;
+  }
+  .favoriteList .fav .leftGroup p {
+    margin: auto 0;
+    font-size: 30px;
+    margin-right: 1rem;
+  }
+  .favoriteList .fav .leftGroup img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .favoriteList .fav .rightGroup button {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    margin-right: 2rem;
+    padding: 0.5vw 1vw;
+  }
+  .favoriteList .fav .rightGroup i {
+    margin: auto 1rem auto auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .favoriteList {
+    padding: 5rem 0;
+  }
+  .favoriteList .fav {
+    margin: 0 8rem;
+    margin-bottom: 1rem;
+  }
+  .favoriteList .fav .leftGroup h1 {
+    margin: auto 0;
+    margin-right: 1rem;
+  }
+  .favoriteList .fav .leftGroup p {
+    margin: auto 0;
+    font-size: 30px;
+    margin-right: 1rem;
+  }
+  .favoriteList .fav .leftGroup img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .favoriteList .fav .rightGroup button {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    margin-right: 2rem;
+    padding: 0.5vw 4vw;
+  }
+  .favoriteList .fav .rightGroup i {
+    margin: auto 1rem auto auto;
+  }
+}
+
+.favoriteList {
+  background: #b4d3d9;
+}
+
+.favoriteList .fav {
+  padding: 1rem;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 20px;
+  border: 4px solid #5db0b9;
+}
+
+.favoriteList .fav .leftGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 8;
+      -ms-flex-positive: 8;
+          flex-grow: 8;
+  font-family: ch;
+}
+
+.favoriteList .fav .leftGroup h1,
+.favoriteList .fav .leftGroup p {
+  color: #103a58;
+}
+
+.favoriteList .fav .leftGroup img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: 4px solid #5db0b9;
+  border-radius: 50%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.favoriteList .fav .leftGroup img:hover {
+  -webkit-filter: brightness(85%);
+          filter: brightness(85%);
+}
+
+.favoriteList .fav button {
+  background: transparent;
+  border: 4px solid #017e91;
+  border-radius: 15px;
+  color: #017e91;
+  font-family: ch;
+  font-size: 25px;
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.favoriteList .fav button:focus {
+  outline: none;
+}
+
+.favoriteList .fav button:hover {
+  color: #fff;
+  background-color: #017e91;
+}
+
+.favoriteList .fav button:active {
+  color: #fff;
+  background-color: #017e91;
+}
+
+.favoriteList .fav i {
+  cursor: pointer;
+  color: #103a58;
+}
+
+.emptyFav {
+  font-size: 20px;
+  font-family: ch;
+  color: #103a58;
+  text-align: center;
+  margin: 1rem 0;
+  letter-spacing: 3px;
+}
+
+.emptyFav button {
+  padding: 0 1rem;
+  margin-top: 2rem;
+  background: transparent;
+  border: 4px solid #017e91;
+  border-radius: 15px;
+  color: #017e91;
+  font-family: ch;
+  font-size: 25px;
+  cursor: pointer;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.emptyFav button:focus {
+  outline: none;
+}
+
+.emptyFav button:hover {
+  color: #fff;
+  background-color: #017e91;
+}
+
+.emptyFav button:active {
+  color: #fff;
+  background-color: #017e91;
+}
+/*# sourceMappingURL=Favorites.css.map */

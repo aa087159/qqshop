@@ -1,0 +1,68 @@
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+const cors = require('cors');
+console.log(process.env.SERVER_PORT);
+const DB_URL = process.env.MONGODB_URL;
+const dbName = 'doggies';
+const dbCollection = 'messages';
+const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
+
+const app = express();
+app.use(morgan('common'));
+app.use(helmet());
+app.options('*', cors());
+app.use(
+	cors({
+		origin: `${process.env.CLIENT_PORT || 'http://localhost:3000'} `,
+	})
+);
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+	client.connect((err) => {
+		res.json({
+			message: 'doggies!',
+		});
+	});
+});
+
+app.post('/api/postMessages', (req, res) => {
+	console.log(process.env.CLIENT_PORT);
+	client.connect((error) => {
+		if (error) throw error;
+		const db = client.db(dbName);
+
+		const postsCollection = db.collection(dbCollection);
+		postsCollection.find().toArray(async (err, result) => {
+			postsCollection.insertOne(
+				{
+					name: req.body.name,
+					email: req.body.email,
+					message: req.body.message,
+					postedAt: new Date(),
+				},
+				(err, result) => {
+					assert.strictEqual(err, null);
+					assert.strictEqual(1, result.result.n);
+					assert.strictEqual(1, result.ops.length);
+					res.json({ message: 'message posted' });
+				}
+			);
+		});
+	});
+});
+
+const port = process.env.SERVER_PORT || 8080;
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('../client/build'));
+}
+
+app.listen(port, () => {
+	console.log(`${process.env.SERVER_PORT || 'http://localhost:3000'} `);
+});

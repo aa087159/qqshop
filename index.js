@@ -25,7 +25,7 @@ app.use(cors());
 // 	});
 // });
 
-app.use('/api/postMessages', (req, res) => {
+app.post('/api/postMessages', (req, res) => {
 	client.connect((error) => {
 		if (error) throw error;
 		const db = client.db(dbName);

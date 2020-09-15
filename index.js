@@ -13,7 +13,7 @@ const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('common'));
 app.use(helmet());
 app.use(express.json());
@@ -53,7 +53,7 @@ app.post('/api/postMessages', (req, res) => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-	app.use('/static', express.static(path.join(__dirname, 'client/build')));
+	app.use(express.static(__dirname + '/public'));
 }
 
 const port = process.env.PORT || 8080;

@@ -25,7 +25,7 @@ app.use(express.json());
 // 	});
 // });
 
-app.post('/api/postMessages', (req, res) => {
+app.use('/api/postMessages', (req, res) => {
 	client.connect((error) => {
 		if (error) throw error;
 		const db = client.db(dbName);

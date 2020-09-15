@@ -27,7 +27,7 @@
 		"client": "cd client && npm start",
 		"server": "nodemon index.js",
 		"startori": "concurrently \"npm run server\" \"npm run client\"",
-		"start": "nodemon index.js"
+		"start": "node index.js"
 	},
 	"keywords": [],
 	"author": "",

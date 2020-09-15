@@ -9,16 +9,13 @@ const DB_URL = process.env.MONGODB_URI;
 const dbName = 'doggies';
 const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
+const path = require('path');
 
 const app = express();
 app.use(morgan('common'));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('./client/build'));
-}
 
 // app.get('/', (req, res) => {
 // 	client.connect((err) => {
@@ -52,6 +49,13 @@ app.post('/api/postMessages', (req, res) => {
 		});
 	});
 });
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
+}
 
 const port = process.env.PORT || 8080;
 

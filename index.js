@@ -11,13 +11,29 @@ const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
 const path = require('path');
 const app = express();
-const bodyParser = require('body-parser');
+const port = process.env.PORT || 8080;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.options('*', cors());
+
 app.use(morgan('common'));
 app.use(helmet());
 app.use(express.json());
+
 app.use(cors());
+
+app.use(function (req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader(
+		'Access-Control-Allow-Methods',
+		'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+	);
+	res.setHeader(
+		'Access-Control-Allow-Headers',
+		'X-Requested-With,content-type'
+	);
+	res.setHeader('Access-Control-Allow-Credentials', true);
+	next();
+});
 
 // app.get('/', (req, res) => {
 // 	client.connect((err) => {
@@ -55,8 +71,6 @@ app.post('/api/postMessages', (req, res) => {
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(__dirname + 'client/build'));
 }
-
-const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
 	console.log(`Running on Port: ${port}`);

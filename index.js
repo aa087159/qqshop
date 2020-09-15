@@ -13,12 +13,7 @@ const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
 const app = express();
 app.use(morgan('common'));
 app.use(helmet());
-app.options('*', cors());
-app.use(
-	cors({
-		origin: `${process.env.PORT || 'http://localhost:3000'} `,
-	})
-);
+app.use(cors());
 
 app.use(express.json());
 

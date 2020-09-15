@@ -58,7 +58,7 @@ app.post('/api/postMessages', (req, res) => {
 const port = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('../client/build'));
+	app.use(express.static('./client/build'));
 }
 
 app.listen(port, () => {

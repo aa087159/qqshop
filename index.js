@@ -11,6 +11,7 @@ const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
 const path = require('path');
 const app = express();
+var router = express.Router();
 const port = process.env.PORT || 5000;
 
 app.options('*', cors());
@@ -43,7 +44,7 @@ app.use(function (req, res, next) {
 // 	});
 // });
 
-app.post('/api/postMessages', (req, res) => {
+router.post('/api/postMessages', (req, res) => {
 	client.connect((error) => {
 		if (error) throw error;
 		const db = client.db(dbName);
@@ -67,6 +68,31 @@ app.post('/api/postMessages', (req, res) => {
 		});
 	});
 });
+
+// app.post('/api/postMessages', (req, res) => {
+// 	client.connect((error) => {
+// 		if (error) throw error;
+// 		const db = client.db(dbName);
+
+// 		const postsCollection = db.collection(dbCollection);
+// 		postsCollection.find().toArray(async (err, result) => {
+// 			postsCollection.insertOne(
+// 				{
+// 					name: req.body.name,
+// 					email: req.body.email,
+// 					message: req.body.message,
+// 					postedAt: new Date(),
+// 				},
+// 				(err, result) => {
+// 					assert.strictEqual(err, null);
+// 					assert.strictEqual(1, result.result.n);
+// 					assert.strictEqual(1, result.ops.length);
+// 					res.json({ message: 'message posted' });
+// 				}
+// 			);
+// 		});
+// 	});
+// });
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(__dirname + 'client/build'));

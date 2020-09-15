@@ -10,22 +10,24 @@ const dbName = 'doggies';
 const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
 const path = require('path');
+const serveStatic = require('serve-static');
 
 const app = express();
 app.use(morgan('common'));
 app.use(helmet());
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+app.use(serveStatic(__dirname + '/client/build'));
 
-// app.get('/', (req, res) => {
-// 	client.connect((err) => {
-// 		res.json({
-// 			message: 'doggies!',
-// 		});
-// 	});
-// });
+app.use('/', (req, res) => {
+	client.connect((err) => {
+		res.json({
+			message: 'doggies!',
+		});
+	});
+});
 
-app.use('/api/postMessages', (req, res) => {
+app.post('/api/postMessages', (req, res) => {
 	client.connect((error) => {
 		if (error) throw error;
 		const db = client.db(dbName);
@@ -50,12 +52,12 @@ app.use('/api/postMessages', (req, res) => {
 	});
 });
 
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-	});
-}
+// if (process.env.NODE_ENV === 'production') {
+// 	app.use(express.static('client/build'));
+// 	app.get('*', (req, res) => {
+// 		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+// 	});
+// }
 
 const port = process.env.PORT || 8080;
 

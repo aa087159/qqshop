@@ -17,9 +17,11 @@ app.use(morgan('common'));
 app.use(helmet());
 app.use(express.json());
 app.use(cors());
-app.use(serveStatic(__dirname + '/client/build'));
 
-app.use('/', (req, res) => {
+app.use('*', express.static(path.join(__dirname, 'client', 'build')));
+//app.use(serveStatic(__dirname + '/client/build'));
+
+app.get('/', (req, res) => {
 	client.connect((err) => {
 		res.json({
 			message: 'doggies!',

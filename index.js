@@ -14,8 +14,11 @@ const app = express();
 app.use(morgan('common'));
 app.use(helmet());
 app.use(cors());
-
 app.use(express.json());
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('./client/build'));
+}
 
 // app.get('/', (req, res) => {
 // 	client.connect((err) => {
@@ -51,10 +54,6 @@ app.post('/api/postMessages', (req, res) => {
 });
 
 const port = process.env.PORT || 8080;
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('./client/build'));
-}
 
 app.listen(port, () => {
 	console.log(`${process.env.PORT || 'http://localhost:3000'} `);

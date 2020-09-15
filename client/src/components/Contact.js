@@ -3,6 +3,7 @@ import { ShopConsumer } from '../context';
 import CurlySVG from './CurlySVG.js';
 
 const API_URL = 'https://qqclubshop.herokuapp.com';
+console.log();
 
 export class Contact extends Component {
 	constructor(props) {
@@ -57,7 +58,7 @@ export class Contact extends Component {
 	submitHandler = (e) => {
 		e.preventDefault();
 
-		fetch(`${API_URL}/api/postMessages`, {
+		fetch(`${process.env.PORT}/api/postMessages`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',

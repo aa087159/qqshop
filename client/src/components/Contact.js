@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ShopConsumer } from '../context';
 import CurlySVG from './CurlySVG.js';
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'https://qqclubshop.herokuapp.com/';
 
 export class Contact extends Component {
 	constructor(props) {

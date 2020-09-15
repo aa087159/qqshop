@@ -10,8 +10,9 @@ const dbName = 'doggies';
 const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
 const path = require('path');
-
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('common'));
 app.use(helmet());
 app.use(express.json());

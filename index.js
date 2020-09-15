@@ -10,7 +10,6 @@ const dbName = 'doggies';
 const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
 const path = require('path');
-const serveStatic = require('serve-static');
 
 const app = express();
 app.use(morgan('common'));
@@ -52,7 +51,7 @@ app.post('/api/postMessages', (req, res) => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '/client/dist')));
+	app.use(express.static(path.join(__dirname, '/client')));
 	// app.get('*', (req, res) => {
 	// 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 	// });

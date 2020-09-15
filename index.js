@@ -9,6 +9,7 @@ const DB_URL = process.env.MONGODB_URI;
 const dbName = 'doggies';
 const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
+const path = require('path');
 
 const app = express();
 app.use(morgan('common'));

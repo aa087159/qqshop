@@ -58,7 +58,7 @@ export class Contact extends Component {
 	submitHandler = (e) => {
 		e.preventDefault();
 
-		fetch(`${process.env.PORT}/api/postMessages`, {
+		fetch(`/api/postMessages`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',

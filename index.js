@@ -22,13 +22,13 @@ app.use(
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-	client.connect((err) => {
-		res.json({
-			message: 'doggies!',
-		});
-	});
-});
+// app.get('/', (req, res) => {
+// 	client.connect((err) => {
+// 		res.json({
+// 			message: 'doggies!',
+// 		});
+// 	});
+// });
 
 app.post('/api/postMessages', (req, res) => {
 	client.connect((error) => {

@@ -11,7 +11,7 @@ const dbCollection = 'messages';
 const client = new MongoClient(DB_URL, { useUnifiedTopology: true });
 const path = require('path');
 const app = express();
-const bodyParser = require('bodyParser');
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('common'));

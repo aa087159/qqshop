@@ -17,6 +17,13 @@ app.use(helmet());
 app.use(express.json());
 app.use(cors());
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '/client')));
+	// app.get('*', (req, res) => {
+	// 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	// });
+}
+
 app.get('/', (req, res) => {
 	client.connect((err) => {
 		res.json({
@@ -49,13 +56,6 @@ app.post('/api/postMessages', (req, res) => {
 		});
 	});
 });
-
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '/client')));
-	// app.get('*', (req, res) => {
-	// 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-	// });
-}
 
 const port = process.env.PORT || 8080;
 
